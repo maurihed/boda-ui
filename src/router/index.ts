@@ -6,7 +6,8 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    redirect: '/guests',
+    name: 'Dashboard',
+    component: () => import('../views/Dashboard.vue'),
   },
   {
     path: '/guests',
