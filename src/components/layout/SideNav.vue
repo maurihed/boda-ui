@@ -29,7 +29,7 @@ export default class SideNav extends Vue {
   .SideNav {
     width: $sideNav-width;
     background: $sideNav-background;
-    left: -220px;
+    left: -$sideNav-width;
     padding-top: 40px;
     &__header {
       left: calc(#{$sideNav-width} - 1px);
