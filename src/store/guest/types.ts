@@ -6,7 +6,7 @@ export enum GuestType {
 }
 
 export interface Family {
-  id: number;
+  id?: number;
 
   name: string;
 

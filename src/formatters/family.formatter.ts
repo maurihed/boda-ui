@@ -6,7 +6,7 @@ interface FormatFamiliesReturn {
 }
 
 export function formatFamilies(families: Family[] = []): FormatFamiliesReturn {
-  const familyIds = families.map((family: Family) => family.id);
+  const familyIds = families.map((family: Family) => (family.id || 0));
   return {
     familyIds,
     families,
