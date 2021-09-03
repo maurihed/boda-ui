@@ -19,10 +19,10 @@
   </div>
 </template>
 <script lang="ts">
-import { Guest, GuestType } from '@/store/guest/types';
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
+import { Guest, GuestType } from '@/store/guest/types';
 
 @Component
 export default class GuestList extends Vue {
