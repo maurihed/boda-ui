@@ -1,8 +1,8 @@
+import { ApolloQueryResult } from 'apollo-client';
+import { ActionTree } from 'vuex';
 import { getApolloClient } from '@/apollo';
 import { formatFamilies } from '@/formatters/family.formatter';
 import { LOAD_FAMILIES_QUERY } from '@/graphql/guest/queries';
-import { ApolloQueryResult } from 'apollo-client';
-import { ActionTree } from 'vuex';
 import { IState } from '../types';
 import { Family, GuestState } from './types';
 
