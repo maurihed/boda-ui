@@ -9,7 +9,7 @@ const getters: GetterTree<GuestState, IState> = {
   families({ families }): Family[] {
     return Object.values(families);
   },
-  familiesIds({ familiesIds }): number[] {
+  familiesIds({ familiesIds }): string[] {
     return familiesIds;
   },
   guestsByFamily({ families }, familyId: number): Guest[] {

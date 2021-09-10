@@ -9,6 +9,21 @@ export const LOAD_GUESTS = gql`
   }
 `;
 
+export const NEW_FAMILY = gql`
+  mutation NewFamily($name: String!, $guests: [GuestInputType!]) {
+    newFamily(name: $name, guests: $guests) {
+      id
+      name
+      guests {
+        id
+        name
+        age
+        type
+      }
+    }
+  }
+`;
+
 export const LOAD_FAMILIES_QUERY = gql`
   query loadFamilies {
     families {

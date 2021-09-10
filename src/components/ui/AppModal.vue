@@ -41,7 +41,7 @@ export default class AppModal extends Vue {
     this.$refs.modalRef.addEventListener('hide.bs.modal', this.emitCloseEvent.bind(this));
   }
 
-  private destroyed(): void {
+  private beforeDestroy(): void {
     this.$refs.modalRef.removeEventListener('hide.bs.modal', this.emitCloseEvent.bind(this));
   }
 

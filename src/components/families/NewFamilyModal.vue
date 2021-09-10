@@ -11,7 +11,7 @@
           id="familyName"
           class="form-control form-control-sm"
           type="text"
-          v-model="familyRequest.name"
+          v-model.trim="familyRequest.name"
         >
       </div>
       <h6 class="text-center">Miembros</h6>
@@ -43,7 +43,7 @@
               id="name"
               class="form-control form-control-sm"
               type="text"
-              v-model="newGuest.name"
+              v-model.trim="newGuest.name"
             >
           </div>
           <div class="mb-2">
@@ -52,7 +52,7 @@
               id="age"
               class="form-control form-control-sm"
               type="number"
-              v-model="newGuest.age"
+              v-model.number="newGuest.age"
             >
           </div>
         </div>
@@ -97,11 +97,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Action } from 'vuex-class';
 import AppModal from '@/components/ui/AppModal.vue';
 import { Family, GuestType, Guest } from '@/store/guest/types';
 
 @Component({ components: { AppModal } })
 export default class NewFamilyModal extends Vue {
+  @Action('newFamily', { namespace: 'guest' }) private newFamily!: ((fmaily: Family) => void);
+
   private isOpen = false;
 
   private guestTypes = GuestType;
@@ -157,8 +160,9 @@ export default class NewFamilyModal extends Vue {
   }
 
   private save(): void {
-    console.log('== Data to save ==');
-    console.log(this.familyRequest);
+    this.newFamily(this.familyRequest);
+    this.resetNewGuest();
+    this.closeModal();
   }
 
   public openModal(): void {

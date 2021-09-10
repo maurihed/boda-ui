@@ -11,7 +11,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 Vue.config.productionTip = false;
 
 const apolloOptions: IApolloOptions = {
-  url: 'https://api.maurihed.dev/graphql',
+  url: process.env.VUE_APP_GRAPHQL_SERVER || '',
   timeout: 20000,
   onError: (err: ErrorResponse) => { console.log(err); },
 };

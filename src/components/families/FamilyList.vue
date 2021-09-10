@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FamilyCard :family="family" v-for="family in families" :key="family.id" />
+    <FamilyCard class="mb-2" :family="family" v-for="family in families" :key="family.id" />
   </div>
 </template>
 <script lang="ts">

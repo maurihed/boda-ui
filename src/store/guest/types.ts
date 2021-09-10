@@ -28,12 +28,12 @@ export interface Guest {
 }
 
 export interface FamilyState {
-  [key: number]: Family
+  [key: string]: Family
 }
 
 export interface GuestState {
   isLoading: boolean;
-  familiesIds: number[];
+  familiesIds: string[];
   families: FamilyState;
 }
 

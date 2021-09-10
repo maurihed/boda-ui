@@ -25,6 +25,8 @@ export default class GuestView extends Vue {
     newFamilyModal?: NewFamilyModal,
   } = {};
 
+  private pageTitle = 'Invitados';
+
   @Action('loadFamilies', { namespace: 'guest' }) private loadFamilies: (() => void)|undefined;
 
   @Getter('isLoading', { namespace: 'guest' }) private isLoading: boolean|undefined;
