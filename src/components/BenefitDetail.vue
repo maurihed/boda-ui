@@ -28,10 +28,10 @@
 </template>
 
 <script lang="ts">
-import { TouchUtils } from '@/utils/touchUtils';
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
+import { TouchUtils } from '@/utils/touchUtils';
 
 @Component({ name: 'BenefitDetail' })
 export default class BenefitDetail extends Vue {

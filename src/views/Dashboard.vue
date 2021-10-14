@@ -6,9 +6,9 @@
   </div>
 </template>
 <script lang="ts">
-import ToastService from '@/services/ToastService';
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import ToastService from '@/services/ToastService';
 import AppToast from '../components/ui/AppToast.vue';
 import Test from '../components/Test.vue';
 

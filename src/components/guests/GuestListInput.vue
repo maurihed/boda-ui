@@ -42,9 +42,9 @@
 </ul>
 </template>
 <script lang="ts">
-import { Guest } from '@/store/guest/types';
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
+import { Guest } from '@/store/guest/types';
 import VInput from '@/components/common/forms/VInput.vue';
 
 @Component({ name: 'GuestListInput', components: { VInput } })
