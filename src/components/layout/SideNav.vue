@@ -1,6 +1,6 @@
 <template>
   <div
-    class="d-flex flex-column SideNav border-end position-absolute"
+    class="d-flex flex-column SideNav border-end position-absolute z-index-5"
     :class="{'opened': isDrawerOpen}"
   >
     <div class="SideNav__header position-absolute border">
@@ -31,6 +31,7 @@ export default class SideNav extends Vue {
     background: $sideNav-background;
     left: -$sideNav-width;
     padding-top: 40px;
+    z-index: 1050;
     &__header {
       left: calc(#{$sideNav-width} - 1px);
       top: 0;

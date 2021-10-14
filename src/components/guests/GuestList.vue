@@ -31,7 +31,7 @@ export default class GuestList extends Vue {
   private guestType = GuestType;
 
   get pivot(): number {
-    return Math.floor((this.guests?.length || 0) / 2);
+    return Math.ceil((this.guests?.length || 0) / 2);
   }
 
   get leftList(): Guest[] {

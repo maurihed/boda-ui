@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex" id="app">
     <SideNav class="flex-shrink-0 h-100"/>
-    <div class="content flex-grow-1 h-100 encapsulated-mt">
+    <div class="content flex-grow-1 h-100 encapsulated-mt overflow-auto">
       <router-view/>
     </div>
   </div>

@@ -10,10 +10,11 @@ export const LOAD_GUESTS = gql`
 `;
 
 export const NEW_FAMILY = gql`
-  mutation NewFamily($name: String!, $guests: [GuestInputType!]) {
-    newFamily(name: $name, guests: $guests) {
+  mutation NewFamily($name: String!, $familySide: FamilySide!, $guests: [GuestInputType!]) {
+    newFamily(name: $name, familySide: $familySide, guests: $guests) {
       id
       name
+      familySide
       guests {
         id
         name
@@ -24,11 +25,18 @@ export const NEW_FAMILY = gql`
   }
 `;
 
+export const DELETE_FAMILY = gql`
+  mutation DeleteFamilyMutation($familyId: Int!) {
+    deleteFamily(familyId: $familyId)
+  }
+`;
+
 export const LOAD_FAMILIES_QUERY = gql`
   query loadFamilies {
     families {
       id
       name
+      familySide
       guests {
         id
         name

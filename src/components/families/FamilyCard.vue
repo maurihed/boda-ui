@@ -6,8 +6,12 @@
         <p class="text-end">Adultos: {{adults}}, Niños: {{childs}}</p>
         <GuestList :guests="family.guests" />
         <div class="actions text-end">
-          <button class="btn btn-sm btn-outline-danger me-2">Eliminar</button>
-          <button class="btn btn-sm btn-outline-warning">Editar</button>
+          <button
+            @click="$emit('delete', family)"
+            class="btn btn-sm btn-outline-danger me-2">Eliminar</button>
+          <button
+            @click="$emit('edit', family)"
+            class="btn btn-sm btn-outline-warning">Editar</button>
         </div>
       </div>
     </div>

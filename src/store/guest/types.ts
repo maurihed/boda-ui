@@ -5,10 +5,17 @@ export enum GuestType {
   OLD_ADULT = 'OLD_ADULT',
 }
 
+export enum FamilySide {
+  GROOM = 'GROOM',
+  BRIDE = 'BRIDE',
+}
+
 export interface Family {
   id?: number;
 
   name: string;
+
+  familySide: FamilySide;
 
   guests: Guest[];
 }

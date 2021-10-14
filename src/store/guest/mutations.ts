@@ -14,6 +14,14 @@ const mutations: MutationTree<GuestState> = {
     state.familiesIds.push(id);
     state.families = { ...state.families, [id]: family };
   },
+  REMOVE_FAMILY(state: GuestState, familyId: number) {
+    const id = `id-${familyId}`;
+    state.familiesIds = state.familiesIds
+      .filter((_id: string): boolean => _id !== id);
+    const families = { ...state.families };
+    delete families[id];
+    state.families = families;
+  },
 };
 
 export default mutations;

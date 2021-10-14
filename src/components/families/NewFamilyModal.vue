@@ -1,7 +1,7 @@
 <template>
   <AppModal
     title="Nueva Familia"
-    :isVisible="isOpen"
+    :isVisible="isModalOpen"
     @onClose="closeHandler"
   >
     <div slot="body">
@@ -13,6 +13,31 @@
           type="text"
           v-model.trim="familyRequest.name"
         >
+      </div>
+      <div class="mb-2">
+        <p>Lado de la familia: </p>
+        <div class="form-check form-check-inline">
+          <input
+            id="groom"
+            name="familySide"
+            v-model="familyRequest.familySide"
+            :value="familySideEnum.GROOM"
+            class="form-check-input"
+            type="radio"
+          >
+          <label class="form-check-label" for="inlineRadio1">Novio</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            id="bride"
+            name="familySide"
+            v-model="familyRequest.familySide"
+            :value="familySideEnum.BRIDE"
+            class="form-check-input"
+            type="radio"
+          >
+          <label class="form-check-label" for="inlineRadio2">Novia</label>
+        </div>
       </div>
       <h6 class="text-center">Miembros</h6>
       <ul v-if="familyRequest.guests.length" class="list-group mb-2">
@@ -59,13 +84,9 @@
         <div class="mb-2">
           <label for="type" class="form-label">Tipo</label>
           <select class="form-select form-select-sm" v-model="newGuest.type">
-            <option
-              class="form-control form-control-sm"
-              v-for="guestType in guestTypes"
-              :key="guestType"
-              :value="guestType">
-              {{guestType}}
-            </option>
+            <option :value="guestTypes.CHILD">Niño</option>
+            <option :value="guestTypes.YOUNG_ADULT">Adolecente</option>
+            <option :value="guestTypes.OLD_ADULT">Adulto</option>
           </select>
         </div>
         <div class="text-center">
@@ -95,17 +116,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action } from 'vuex-class';
+import ModalMixin from '@/mixins/ModalMixin';
 import AppModal from '@/components/ui/AppModal.vue';
-import { Family, GuestType, Guest } from '@/store/guest/types';
+import {
+  Family, GuestType, Guest, FamilySide,
+} from '@/store/guest/types';
 
 @Component({ components: { AppModal } })
-export default class NewFamilyModal extends Vue {
+export default class NewFamilyModal extends ModalMixin {
   @Action('newFamily', { namespace: 'guest' }) private newFamily!: ((fmaily: Family) => void);
 
-  private isOpen = false;
+  private familySideEnum = FamilySide;
 
   private guestTypes = GuestType;
 
@@ -115,20 +138,29 @@ export default class NewFamilyModal extends Vue {
 
   private familyRequest: Family = {
     name: '',
+    familySide: FamilySide.GROOM,
     guests: [],
   };
 
   private newGuest: Guest = {
     name: '',
-    age: 0,
+    age: undefined,
     type: GuestType.YOUNG_ADULT,
   };
 
   private resetNewGuest(): void {
     this.newGuest = {
       name: '',
-      age: 0,
+      age: undefined,
       type: GuestType.YOUNG_ADULT,
+    };
+  }
+
+  private resetFamilyRequest(): void {
+    this.familyRequest = {
+      name: '',
+      familySide: FamilySide.GROOM,
+      guests: [],
     };
   }
 
@@ -161,19 +193,15 @@ export default class NewFamilyModal extends Vue {
 
   private save(): void {
     this.newFamily(this.familyRequest);
-    this.resetNewGuest();
+    this.resetFamilyRequest();
     this.closeModal();
   }
 
-  public openModal(): void {
-    this.isOpen = true;
-  }
-
-  public closeModal(): void {
-    this.isOpen = false;
-  }
-
   private closeHandler(): void {
+    this.closeModal();
+  }
+
+  private beforeDestroy() {
     this.closeModal();
   }
 }
